@@ -20,9 +20,9 @@ Route::get('/', function () {
 
 Route::get('/main',[RegisteredUserController::class,'mainpage']);
 
-Route::get('/main', function () {
-    return view('mainpage.mainpage');
-})->middleware(['auth', 'verified'])->name('mainpage.mainpage');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
