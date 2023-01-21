@@ -13,15 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
+        
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->varchar('phone_number');
+            $table->string('phone_number')->nullable()->default('');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('roles_id')->default(3);
+            $table->foreign('roles_id')->references('id')->on('roles')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
