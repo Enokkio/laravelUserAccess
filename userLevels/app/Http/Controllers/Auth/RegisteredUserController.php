@@ -22,7 +22,16 @@ class RegisteredUserController extends Controller
     {
         return redirect()->route('main');
     }
-
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+    
+    
+        $d = DB::table('users')->get();
+        dd($d);
+        return view('dashboard',['data'=>$d]);
+    }
     /**
      * Handle an incoming registration request.
      *
